@@ -1,4 +1,4 @@
-public class Problem191 {
+public class Review_Problem191 {
     public class Solution {
         // you need to treat n as an unsigned value
         public int hammingWeight(int n) {
