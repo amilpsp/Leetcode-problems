@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 import static java.lang.Math.abs;
 
-public class Problem1779 {
+public class Failed_Problem1779 {
 
     /*You are given two integers, x and y, which represent your current
     location on a Cartesian grid: (x, y). You are also given an array
@@ -23,13 +23,13 @@ public class Problem1779 {
     1 <= points.length <= 104
     points[i].length == 2
     1 <= x, y, ai, bi <= 104 */
-    public static void main(String[] args) {
+ /*   public static void main(String[] args) {
         int x = 3;
         int y = 4;
         int[][] points = {{1, 2}, {3, 1}, {2, -4}, {-2, 3}, {4, 4}};
         int nearestIndex = nearestValidPoint(x, y, points);
         System.out.print(nearestIndex);
-    }
+    }*/
 
     public static int nearestValidPoint(int x, int y, int[][] points) {
         int nearestIndex = points.length-1;
