@@ -1,5 +1,4 @@
 import java.util.LinkedList;
-import java.util.List;
 import static java.lang.Math.abs;
 
 public class Problem1779 {
@@ -27,15 +26,15 @@ public class Problem1779 {
     public static void main(String[] args) {
         int x = 3;
         int y = 4;
-        int[][] points = {{1, 2}, {3, 1}, {2, -4}, {-2, 3}, {4, 4}, {8, 2}, {3, 3}, {2, 7}, {2, 2}, {1, 3}, {3, 15}, {4, 4}, {3, 4}};
+        int[][] points = {{1, 2}, {3, 1}, {2, -4}, {-2, 3}, {4, 4}};
         int nearestIndex = nearestValidPoint(x, y, points);
-
+        System.out.print(nearestIndex);
     }
 
     public static int nearestValidPoint(int x, int y, int[][] points) {
-        int nearestIndex=-1;
-        List compatibles = new LinkedList();
-
+        int nearestIndex = points.length-1;
+        LinkedList compatibles = new LinkedList();
+        LinkedList nearestDistances = new LinkedList();
 
         for (int i = 0; i < points.length; i++) {
 //Making a list of compatible points' indexes
@@ -44,30 +43,42 @@ public class Problem1779 {
             }
         }
 
+        if (compatibles.size()>0){
+
 //using the values at those indexes for comparison
-        for (int j = 0; j < compatibles.size() - 1; j++) {
-            int xJ = points[(int) compatibles.get(j)][0];
-            int yJ = points[(int) compatibles.get(j)][1];
+            for (int j = compatibles.size() - 1; j >= 0;  j--) {
+                int xJ = points[(int) compatibles.get(j)][0];
+                int yJ = points[(int) compatibles.get(j)][1];
 
-            int xJ1 = points[(int) compatibles.get(j + 1)][0];
-            int yJ1 = points[(int) compatibles.get(j + 1)][1];
+                for (int k = compatibles.size()-2; k >=1 ; k--){
+                    int xJK = points[(int) compatibles.get(j - k)][0];
+                    int yJK = points[(int) compatibles.get(j - k)][1];
 
-            if ((abs(x - xJ) + abs(y - yJ)) < (abs(x - xJ1) + abs(y - yJ1))) {
-                nearestIndex = (int) compatibles.get(j);
-                System.out.println("index: " + nearestIndex);
+                    int differenceJ=abs(x - xJ) + abs(y - yJ);
+                    int differenceJK=abs(x - xJK) + abs(y - yJK);
+
+                    if (differenceJ <= differenceJK) {
+                    //    nearestDistances.add((int) compatibles.get(j),differenceJ); //trying to make a linked list with the smallest distances and their indexes to be able to pick amongst them.
+                        nearestIndex = (int) compatibles.get(j);
+                        System.out.println("index: " + nearestIndex);
+                    }
+
+                }
             }
-        }
-        int previousX = points[nearestIndex][0];
-        int previousY = points[nearestIndex][1];
+            int previousX = points[nearestIndex][0];
+            int previousY = points[nearestIndex][1];
 
-        int lastX = points[points.length - 1][0];
-        int lastY = points[points.length - 1][1];
+            int lastX = points[points.length - 1][0];
+            int lastY = points[points.length - 1][1];
 
 //comparing with the last element, that wasn't included in the loop.
-        if ((abs(x - lastX) + abs(y - lastY) < (abs(x - previousX) + abs(y - previousY)))) {
-            nearestIndex = points.length - 1;
-            System.out.println("index: " + nearestIndex);
+            if ((abs(x - lastX) + abs(y - lastY) < (abs(x - previousX) + abs(y - previousY)))) {
+                nearestIndex = points.length - 1;
+                System.out.println("index: " + nearestIndex);
+            }
+            return nearestIndex;
         }
-        return nearestIndex;
+        else
+            return nearestIndex=-1;
     }
 }
