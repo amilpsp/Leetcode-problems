@@ -1,18 +1,20 @@
 import java.util.Arrays;
 
 public class Problem1790 {
-    /*You are given two strings s1 and s2 of equal length. A string
+    /* 2ms RUNTIME, CAN BE DONE IN 0ms. CHECK BETTER SOLUTION AT THE END.
+
+    You are given two strings s1 and s2 of equal length. A string
     swap is an operation where you choose two indices in a string
     (not necessarily different) and swap the characters at these indices.
 
     Return true if it is possible to make both strings equal by performing
     at most one string swap on exactly one of the strings. Otherwise, return false.*/
-    public static void main (String[] args){
+/*    public static void main (String[] args){
         String s1="attack";
         String s2="attkac";
         boolean swappable=areAlmostEqual(s1,s2);
         System.out.println(swappable);
-    }
+    }*/
     public static boolean areAlmostEqual(String s1, String s2) {
         char[] letters1 = s1.toCharArray();
         Arrays.sort(letters1);
