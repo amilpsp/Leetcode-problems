@@ -12,10 +12,10 @@ public class Current_Problem1232 {
         for (int[] point:coordinates){
             System.out.println(point[0]+","+point[1]);
         }
-        int Xn = coordinates[coordinates.length-1][0];
-        int Yn = coordinates[coordinates.length-1][1];
-        int X1 = coordinates[0][0];
-        int Y1 = coordinates[0][1];
+        double Xn = coordinates[coordinates.length-1][0];
+        double Yn = coordinates[coordinates.length-1][1];
+        double X1 = coordinates[0][0];
+        double Y1 = coordinates[0][1];
 
         double m;      //slope
         int c;      //constant
